@@ -310,10 +310,31 @@ footer .fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14
 .credit{margin-top:24px;font-family:'Lato',sans-serif;font-size:11px;letter-spacing:1px;color:var(--ink-soft);opacity:.65;}
 .credit a{color:var(--accent);text-decoration:none;}
 
-/* ── MÚSICA FAB ── */
-.music-fab{position:fixed;bottom:22px;right:22px;z-index:998;width:54px;height:54px;border-radius:50%;border:none;cursor:pointer;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(139,107,181,.5);animation:fabpulse 2.8s infinite ease-out;}
-@keyframes fabpulse{0%{box-shadow:0 0 0 0 rgba(139,107,181,.55);}70%{box-shadow:0 0 0 16px rgba(139,107,181,0);}100%{box-shadow:0 0 0 0 rgba(139,107,181,0);}}
-.music-fab svg{width:23px;height:23px;}
+/* ── VINYL CARTOON ── */
+.vinyl-btn{position:fixed;bottom:20px;right:20px;z-index:998;width:68px;height:68px;border-radius:50%;padding:0;border:3px solid var(--ink);cursor:pointer;background:transparent;opacity:0;transform:scale(.6);pointer-events:none;transition:transform .35s cubic-bezier(.2,.7,.2,1);box-shadow:0 4px 18px rgba(45,26,78,.35);}
+.vinyl-btn.is-ready{opacity:1;transform:scale(1);pointer-events:auto;}
+.vinyl-btn:hover{transform:scale(1.1);}
+.vinyl-spin{width:100%;height:100%;border-radius:50%;position:relative;transition:none;}
+.vinyl-btn.is-playing .vinyl-spin{animation:vinylSpin 1.8s linear infinite;}
+@keyframes vinylSpin{to{transform:rotate(360deg)}}
+.vinyl-disc{width:100%;height:100%;border-radius:50%;overflow:hidden;position:relative;background:
+  radial-gradient(circle,var(--ink) 5%,transparent 5.5%),
+  radial-gradient(circle,var(--rosa) 0%,var(--light) 17%,var(--accent) 19%,transparent 19.5%),
+  repeating-radial-gradient(circle,transparent 20%,rgba(255,255,255,.08) 21%,transparent 22%,transparent 25%,rgba(255,255,255,.06) 26%,transparent 27%,transparent 30%,rgba(255,255,255,.08) 31%,transparent 32%,transparent 35%,rgba(255,255,255,.06) 36%,transparent 37%,transparent 40%,rgba(255,255,255,.08) 41%,transparent 42%,transparent 45%,rgba(255,255,255,.06) 46%,transparent 47%,transparent 50%,rgba(255,255,255,.08) 51%,transparent 52%,transparent 55%,rgba(255,255,255,.06) 56%,transparent 57%,transparent 60%,rgba(255,255,255,.08) 61%,transparent 62%,transparent 65%,rgba(255,255,255,.06) 66%,transparent 67%,transparent 70%,rgba(255,255,255,.08) 71%,transparent 72%,transparent 75%,rgba(255,255,255,.06) 76%,transparent 77%,transparent 80%,rgba(255,255,255,.08) 81%,transparent 82%,transparent 85%,rgba(255,255,255,.06) 86%,transparent 87%,transparent 90%,rgba(255,255,255,.08) 91%,transparent 92%,transparent 95%,rgba(255,255,255,.06) 96%,transparent 97%),
+  radial-gradient(circle,var(--dark) 0%,var(--ink) 60%,#1a0a30 100%);
+  box-shadow:inset 0 0 6px rgba(0,0,0,.3);}
+.vinyl-sheen{position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,.12) 42%,rgba(255,255,255,.2) 48%,rgba(255,255,255,.12) 54%,transparent 66%);pointer-events:none;}
+.vinyl-label-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Great Vibes',cursive;font-size:13px;color:var(--amarillo);text-align:center;line-height:1.1;pointer-events:none;width:28px;text-shadow:0 1px 2px rgba(0,0,0,.4);}
+.vinyl-label-text small{font-family:'Cinzel',serif;font-size:5px;letter-spacing:.15em;display:block;margin-top:1px;opacity:.7;color:var(--rosa);}
+.vinyl-hole{position:absolute;top:50%;left:50%;width:6px;height:6px;transform:translate(-50%,-50%);border-radius:50%;background:var(--ink);box-shadow:0 0 0 1.5px var(--accent);}
+.vinyl-icons{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:18px;height:18px;pointer-events:none;z-index:2;}
+.vinyl-icons svg{width:100%;height:100%;display:block;}
+.vinyl-icon-pause{display:none;}
+.vinyl-btn.is-playing .vinyl-icon-play{display:none;}
+.vinyl-btn.is-playing .vinyl-icon-pause{display:block;}
+.vinyl-btn::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px dashed var(--light);opacity:.4;animation:vinylPulse 3s ease-in-out infinite;}
+.vinyl-btn.is-playing::after{animation-duration:1.6s;border-style:solid;border-color:var(--rosa);}
+@keyframes vinylPulse{0%,100%{transform:scale(1);opacity:.4;}50%{transform:scale(1.14);opacity:.08;}}
 
 /* ── ENVELOPE ── */
 #envelope-screen{position:fixed;inset:0;z-index:10000;overflow:hidden;cursor:pointer;opacity:0;background:#fff;}
@@ -508,12 +529,11 @@ footer .fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14
   <section class="rv">
     <div class="eyebrow">Etiqueta</div>
     <h2 class="sec-title">Código de Vestimenta</h2>
-    <div class="dc-note">Formal</div>
     <div class="dc-circles">
       <div class="dc-c"><div class="ring"><img src="./ic-traje.svg" alt="Caballeros"></div><div class="dc-lbl">Caballeros</div></div>
       <div class="dc-c"><div class="ring"><img src="./ic-vestido.svg" alt="Damas"></div><div class="dc-lbl">Damas</div></div>
     </div>
-    <p class="dc-reserve">Por confirmar</p>
+    <p class="dc-reserve" style="font-style:italic;max-width:280px;margin:0 auto;line-height:1.5;">El mejor look es aquel con el que te sientes comod@</p>
   </section>
 
   <!-- MESA DE REGALOS -->
@@ -611,8 +631,12 @@ footer .fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14
 </div>
 
 <!-- MÚSICA -->
-<button class="music-fab" id="musicFab" aria-label="Reproducir música">
-  <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+<button class="vinyl-btn" id="musicFab" type="button" aria-label="Reproducir música de la invitación">
+  <div class="vinyl-spin"><div class="vinyl-disc"><div class="vinyl-sheen"></div><div class="vinyl-label-text">SG<small>XV</small></div><div class="vinyl-hole"></div></div></div>
+  <div class="vinyl-icons">
+    <svg class="vinyl-icon-play" viewBox="0 0 24 24" fill="var(--amarillo)" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="vinyl-icon-pause" viewBox="0 0 24 24" fill="var(--amarillo)" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  </div>
 </button>
 <audio id="bgAudio" loop preload="none">
   <source src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/audio/xv-sofia/cancion.mp3" type="audio/mpeg">
@@ -789,14 +813,15 @@ function initCrossfade(){
   });
 })();
 
-/* ── MÚSICA ── */
+/* ── MÚSICA (VINYL) ── */
 (function(){
   const fab=document.getElementById('musicFab'),audio=document.getElementById('bgAudio');
   let playing=false;
+  setTimeout(()=>{fab.classList.add('is-ready');},1200);
   fab.addEventListener('click',()=>{
     playing=!playing;
-    if(playing){audio.play().catch(()=>{});fab.style.background='var(--dark)';}
-    else{audio.pause();fab.style.background='var(--accent)';}
+    if(playing){audio.play().catch(()=>{});fab.classList.add('is-playing');}
+    else{audio.pause();fab.classList.remove('is-playing');}
   });
 })();
 </script>
