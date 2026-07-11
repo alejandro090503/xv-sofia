@@ -247,18 +247,50 @@ section{padding:62px 26px;position:relative;}
 .kids-icon img{width:40px;height:40px;opacity:.7;}
 .kids-text{font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.8;color:var(--ink);max-width:340px;margin:0 auto;font-weight:500;}
 
-/* ── RSVP ── */
+/* ── RSVP (estilo boda-jennifer adaptado) ── */
 .rsvp-card{
-  position:relative;overflow:hidden;border-radius:22px;padding:46px 28px;text-align:center;
-  background:linear-gradient(160deg,var(--dark),#8b6b90,var(--accent));box-shadow:0 14px 44px rgba(45,26,78,.28);
+  max-width:420px;margin:0 auto;position:relative;overflow:hidden;
+  background:rgba(255,255,255,.84);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(139,107,181,.38);padding:clamp(44px,6vw,68px) clamp(28px,5vw,52px);
+  box-shadow:0 24px 64px rgba(45,26,78,.10),0 4px 20px rgba(139,107,181,.14);
 }
-.rsvp-card .sec-title{background:linear-gradient(90deg,#f3edf9,#fff 50%,#e0d4f8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:none;margin-bottom:4px;}
-.rsvp-card .r-date{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;letter-spacing:1px;color:#e0d4f8;margin-bottom:8px;text-transform:uppercase;}
-.rsvp-card .r-msg{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(255,255,255,.92);margin-bottom:6px;}
-.rsvp-card .r-pases{font-family:'Lato',sans-serif;font-size:13px;color:#e0d4f8;margin-bottom:20px;min-height:18px;}
-.btn-wa{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 34px;min-height:48px;background:#fff;color:var(--dark);border-radius:30px;border:none;cursor:pointer;font-family:'Cinzel',serif;font-size:12px;text-transform:uppercase;letter-spacing:2px;font-weight:600;transition:transform .3s;}
-.btn-wa:hover{transform:translateY(-2px);}
-.btn-wa svg{width:18px;height:18px;}
+.rsvp-card::before{content:"";position:absolute;inset:10px;border:1px solid rgba(139,107,181,.20);pointer-events:none;}
+.rsvp-corner{position:absolute;width:52px;height:52px;pointer-events:none;}
+.rsvp-corner--tl{top:0;left:0;}
+.rsvp-corner--tr{top:0;right:0;transform:scaleX(-1);}
+.rsvp-corner--bl{bottom:0;left:0;transform:scaleY(-1);}
+.rsvp-corner--br{bottom:0;right:0;transform:scale(-1,-1);}
+.rsvp-inner{text-align:center;}
+.rsvp-ornament{display:block;margin:0 auto 28px;width:min(280px,75vw);height:auto;}
+.rsvp-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(28px,4.2vw,42px);color:var(--ink);margin-bottom:18px;line-height:1.15;}
+.rsvp-title em{color:var(--accent);font-style:italic;}
+.rsvp-text{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--ink-soft);line-height:1.85;margin-bottom:28px;font-weight:500;max-width:360px;margin-left:auto;margin-right:auto;}
+.rsvp-divider{display:flex;align-items:center;gap:14px;margin-bottom:28px;max-width:320px;margin-left:auto;margin-right:auto;}
+.rsvp-divider::before,.rsvp-divider::after{content:"";flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(139,107,181,.45),transparent);}
+.rsvp-divider-heart{color:var(--accent);flex-shrink:0;opacity:.8;}
+.rsvp-pases-display{max-width:360px;margin:0 auto 24px;padding:18px 28px;background:rgba(217,201,254,.15);border:1px solid rgba(139,107,181,.28);border-radius:14px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.rsvp-pases-label{font-family:'Lato',sans-serif;font-size:11px;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:var(--ink-soft);}
+.rsvp-pases-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(36px,5vw,52px);color:var(--dark);line-height:1;}
+.rsvp-btn{
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  width:100%;max-width:360px;margin:0 auto;
+  padding:18px 36px;border-radius:50px;
+  border:1.5px solid rgba(139,107,181,.5);
+  background:linear-gradient(135deg,var(--light) 0%,#e8dff5 100%);
+  font-family:'Cinzel',serif;font-size:11px;font-weight:600;
+  letter-spacing:.3em;text-transform:uppercase;
+  color:var(--ink);cursor:pointer;min-height:52px;
+  position:relative;overflow:hidden;
+  transition:transform .25s,box-shadow .25s;
+  box-shadow:0 6px 20px rgba(217,201,254,.45),0 2px 8px rgba(139,107,181,.18);
+}
+.rsvp-btn::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,var(--accent) 0%,var(--light) 50%,var(--accent) 100%);opacity:0;transition:opacity .4s;border-radius:50px;}
+.rsvp-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(139,107,181,.3);}
+.rsvp-btn:hover::after{opacity:1;}
+.rsvp-btn > *{position:relative;z-index:1;}
+.rsvp-btn:disabled{opacity:.6;cursor:not-allowed;}
+.rsvp-deadline{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-family:'Lato',sans-serif;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--dark);font-weight:600;}
+.r-status{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;text-align:center;margin:14px auto 0;max-width:360px;color:var(--dark);}
 
 /* ── CIERRE + FOOTER ── */
 .closing{position:relative;min-height:88vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:60px 28px;}
@@ -347,16 +379,21 @@ footer .fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14
     </div>
   </section>
 
-  <!-- MIS PAPÁS -->
+  <!-- MI FAMILIA -->
   <section class="rv">
-    <h2 class="sec-title">Mis Papás</h2>
+    <h2 class="sec-title">Mi Familia</h2>
     <div class="heart-div">
       <span class="hd-bar"></span>
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.9-10-9.5C.5 8.5 2 5 5.3 5c1.9 0 3.3 1.1 4.2 2.4C10.4 6.1 11.8 5 13.7 5 17 5 18.5 8.5 17 11.5 14.5 16.1 12 21 12 21z"/></svg>
       <span class="hd-bar r"></span>
     </div>
     <div class="fam-block">
+      <div class="fam-role">Mis Papás</div>
       <div class="fam-names">José García Rincon<span class="fam-amp">&amp;</span>Dulce Pilar Martínez González</div>
+    </div>
+    <div class="fam-block" style="margin-top:28px;">
+      <div class="fam-role">Mis Hermanos</div>
+      <div class="fam-names">José García Martínez<span class="fam-amp">&amp;</span>Isabel García Martínez</div>
     </div>
   </section>
 
@@ -370,19 +407,6 @@ footer .fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14
     </div>
     <div class="fam-block">
       <div class="fam-names">Gustavo Pérez Ramos<span class="fam-amp">&amp;</span>Elsa García Rincon</div>
-    </div>
-  </section>
-
-  <!-- MIS HERMANOS -->
-  <section class="rv">
-    <h2 class="sec-title">Mis Hermanos</h2>
-    <div class="heart-div">
-      <span class="hd-bar"></span>
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.9-10-9.5C.5 8.5 2 5 5.3 5c1.9 0 3.3 1.1 4.2 2.4C10.4 6.1 11.8 5 13.7 5 17 5 18.5 8.5 17 11.5 14.5 16.1 12 21 12 21z"/></svg>
-      <span class="hd-bar r"></span>
-    </div>
-    <div class="fam-block">
-      <div class="fam-names">José García Martínez<span class="fam-amp">&amp;</span>Isabel García Martínez</div>
     </div>
   </section>
 
@@ -425,7 +449,7 @@ footer .fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14
       <p><strong>Victoria, Guanajuato</strong></p>
       <p style="font-style:italic;color:var(--ink-soft);">Ubicación por confirmar</p>
       <div class="loc-times">
-        <div><div class="lt-lbl">Recepción</div><div class="lt-h">18:00 hrs</div></div>
+        <div><div class="lt-lbl">Recepción</div><div class="lt-h">18:30 hrs</div></div>
       </div>
     </div>
   </section>
@@ -452,7 +476,7 @@ footer .fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14
         <div class="tl-item rv">
           <div class="tl-icon"><img src="./ic-recepcion.svg" alt="Recepción"></div>
           <div class="tl-dot"></div>
-          <div class="tl-text"><div class="tl-time">18:00</div><div class="tl-ev">Recepción</div></div>
+          <div class="tl-text"><div class="tl-time">18:30</div><div class="tl-ev">Recepción</div></div>
         </div>
         <div class="tl-item rv">
           <div class="tl-icon"><img src="./ic-cena.svg" alt="Cena"></div>
@@ -490,11 +514,7 @@ footer .fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14
     <div class="fcontent">
       <div class="eyebrow rv">Con Cariño</div>
       <h2 class="sec-title rv">Mesa de Regalos</h2>
-      <p class="gift-intro rv">¡Tu presencia es mi mejor regalo! Pero si deseas hacerme un obsequio, puedo sugerirte:</p>
-      <div class="gift-sobre-label rv">Lluvia de Sobres</div>
-      <div class="silver-circle rv"><img src="./ic-sobre.svg" alt="Sobre"></div>
-      <p class="gift-sobre-desc rv">Es la tradición de obsequiar a la quinceañera un sobre con un detalle en efectivo el día del evento.</p>
-      <div class="gift-sobre-label rv" style="margin-top:42px;">Obsequio de tu Elección</div>
+      <div class="gift-sobre-label rv">Obsequio de tu Elección</div>
       <div class="silver-circle rv"><img src="./ic-regalo.svg" alt="Regalo"></div>
       <p class="gift-sobre-desc rv">Cualquier detalle elegido con cariño, será atesorado para siempre.</p>
     </div>
@@ -531,16 +551,38 @@ footer .fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14
   <!-- RSVP -->
   <section id="srsvp">
     <div class="rsvp-card rv">
-      <div class="eyebrow" style="color:#e0d4f8;">Confirma tu Asistencia</div>
-      <h2 class="sec-title">R.S.V.P.</h2>
-      <div class="r-date">Por confirmar</div>
-      <p class="r-msg">Tu confirmación es muy importante para mí.</p>
-      <p class="r-pases" id="rsvpPases"></p>
-      <button class="btn-wa" id="rsvpBtn" aria-label="Confirmar asistencia">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-        Confirmar Asistencia
-      </button>
-      <p class="r-status" id="rsvpStatus" style="font-family:'Cormorant Garamond',serif;font-size:14px;color:rgba(255,255,255,.85);margin-top:12px;min-height:20px;"></p>
+      <svg class="rsvp-corner rsvp-corner--tl" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M2 50 L2 2 L50 2" stroke="var(--accent)" stroke-width=".9" opacity=".6"/><circle cx="2" cy="2" r="2.5" fill="var(--accent)" opacity=".5"/></svg>
+      <svg class="rsvp-corner rsvp-corner--tr" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M2 50 L2 2 L50 2" stroke="var(--accent)" stroke-width=".9" opacity=".6"/><circle cx="2" cy="2" r="2.5" fill="var(--accent)" opacity=".5"/></svg>
+      <svg class="rsvp-corner rsvp-corner--bl" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M2 50 L2 2 L50 2" stroke="var(--accent)" stroke-width=".9" opacity=".6"/><circle cx="2" cy="2" r="2.5" fill="var(--accent)" opacity=".5"/></svg>
+      <svg class="rsvp-corner rsvp-corner--br" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M2 50 L2 2 L50 2" stroke="var(--accent)" stroke-width=".9" opacity=".6"/><circle cx="2" cy="2" r="2.5" fill="var(--accent)" opacity=".5"/></svg>
+      <div class="rsvp-inner">
+        <svg class="rsvp-ornament" viewBox="0 0 320 56" fill="none" aria-hidden="true">
+          <g stroke="var(--accent)" stroke-width=".9" opacity=".8" fill="none">
+            <path d="M18 28 Q50 10 82 28 Q106 42 130 28"/>
+            <path d="M190 28 Q214 42 238 28 Q270 10 302 28"/>
+            <circle cx="160" cy="28" r="5.5"/>
+            <circle cx="160" cy="28" r="2" fill="var(--accent)" stroke="none"/>
+            <path d="M148 28 L154 28" opacity=".5"/>
+            <path d="M166 28 L172 28" opacity=".5"/>
+            <path d="M154 20 Q160 13 166 20" opacity=".55"/>
+            <path d="M154 36 Q160 43 166 36" opacity=".55"/>
+          </g>
+        </svg>
+        <div class="eyebrow">Confirma tu Asistencia</div>
+        <h2 class="rsvp-title">Tu presencia <em>significa</em> todo</h2>
+        <p class="rsvp-text r-msg">Tu confirmación es muy importante para mí.</p>
+        <div class="rsvp-divider">
+          <svg class="rsvp-divider-heart" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
+        </div>
+        <div class="rsvp-pases-display" id="rsvpPasesDisplay" style="display:none;">
+          <div class="rsvp-pases-label">Pases</div>
+          <div class="rsvp-pases-num" id="rsvpPasesNum">1</div>
+        </div>
+        <button class="rsvp-btn" id="rsvpBtn" type="button">
+          <span id="rsvpBtnText">Confirmar Asistencia</span>
+        </button>
+        <p class="r-status" id="rsvpStatus"></p>
+      </div>
     </div>
   </section>
 
@@ -699,7 +741,7 @@ function initCrossfade(){
 /* ── GOOGLE CALENDAR ── */
 (function(){
   const t=encodeURIComponent('XV Años de Sofía');
-  const d=encodeURIComponent('Misa 17:00 hrs · Recepción 18:00 hrs — Victoria, Guanajuato');
+  const d=encodeURIComponent('Misa 17:00 hrs · Recepción 18:30 hrs — Victoria, Guanajuato');
   const l=encodeURIComponent('Parroquia San Juan Bautista, Santos Degollado 1, Victoria, Guanajuato');
   document.getElementById('gcalBtn').href=
     `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${t}&dates=20260809T220000Z/20260810T050000Z&details=${d}&location=${l}`;
@@ -711,28 +753,30 @@ function initCrossfade(){
   const para=params.get('para');
   const pases=params.get('pases');
   const statusEl=document.getElementById('rsvpStatus');
+  const btnText=document.getElementById('rsvpBtnText');
   if(para){
     document.querySelector('.r-msg').textContent=`¡Hola ${para}! Tu confirmación es muy importante para mí.`;
   }
   if(pases){
-    document.getElementById('rsvpPases').textContent=`Tienes ${pases} ${pases==='1'?'pase reservado':'pases reservados'}.`;
+    document.getElementById('rsvpPasesDisplay').style.display='flex';
+    document.getElementById('rsvpPasesNum').textContent=pases;
   }
   document.getElementById('rsvpBtn').addEventListener('click',function(){
     var btn=this;
     btn.disabled=true;
-    btn.textContent='Enviando...';
+    btnText.textContent='Enviando...';
     statusEl.textContent='';
     fetch('https://panel-invitados.vercel.app/api/confirmar',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({slug:'xv-sofia',nombre:para||'Invitado',pases:parseInt(pases)||1,confirmado:true})
     }).then(function(r){return r.json();}).then(function(){
-      btn.textContent='¡Confirmado!';
-      btn.style.background='#b1dd8b';btn.style.color='#2d1a4e';
+      btnText.textContent='¡Confirmado!';
+      btn.style.background='var(--verde)';btn.style.borderColor='var(--verde)';btn.style.color='var(--ink)';
       statusEl.textContent='Tu asistencia ha sido confirmada. ¡Te esperamos!';
     }).catch(function(){
       btn.disabled=false;
-      btn.innerHTML='<svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Confirmar Asistencia';
+      btnText.textContent='Confirmar Asistencia';
       statusEl.textContent='Hubo un error, intenta de nuevo.';
     });
   });
