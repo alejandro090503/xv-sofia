@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Sofía · Mis XV Años · 9 Agosto 2026</title>
+<meta name="description" content="Invitación digital a los XV Años de Sofía — 9 de agosto de 2026, Victoria, Guanajuato">
+<meta property="og:title" content="XV Años de Sofía">
+<meta property="og:description" content="9 de agosto de 2026 · Victoria, Guanajuato">
+<meta property="og:image" content="https://xv-sofia.vercel.app/og.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+:root{
+  --bg:#fdf8ff;
+  --paper:#ffffff;
+  --accent:#8b6bb5;     /* purple */
+  --dark:#5a3d80;       /* dark purple */
+  --ink:#2d1a4e;
+  --ink-soft:#6e5a90;
+  --light:#d9c9fe;      /* lavender */
+  --surface:#f3edf9;
+  --silver:#c9b8e0;
+}
+body{
+  font-family:'Lato',sans-serif;font-weight:400;font-size:16px;
+  color:var(--ink);background:var(--bg);line-height:1.6;overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:url('./fondo-acuarela.jpg') center top/cover no-repeat;
+  opacity:.52;
+}
+
+.wrap{max-width:440px;margin:0 auto;background:transparent;position:relative;overflow:clip;z-index:1;}
+
+/* ── TIPOGRAFÍA EDITORIAL ── */
+.script{font-family:'Great Vibes',cursive;font-weight:400;}
+.eyebrow{
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--accent);text-align:center;margin-bottom:10px;font-weight:500;
+}
+.sec-title{
+  font-family:'Great Vibes',cursive;font-size:54px;
+  text-align:center;line-height:1.05;margin-bottom:8px;padding-top:10px;
+  background:linear-gradient(90deg,var(--dark) 0%,var(--dark) 28%,var(--light) 50%,var(--dark) 72%,var(--dark) 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmer 7s ease-in-out infinite;
+  filter:drop-shadow(0 1px 10px rgba(217,201,254,.3));
+}
+/* divisor corazón estilo referencia */
+.heart-div{display:flex;align-items:center;justify-content:center;gap:14px;margin:6px auto 26px;}
+.heart-div .hd-bar{width:46px;height:1px;background:linear-gradient(90deg,transparent,var(--light));}
+.heart-div .hd-bar.r{background:linear-gradient(90deg,var(--light),transparent);}
+.heart-div svg{width:15px;height:15px;color:var(--accent);}
+
+@keyframes shimmer{0%,100%{background-position:200% center;}50%{background-position:-200% center;}}
+@keyframes floatGlow{
+  0%,100%{text-shadow:0 0 12px rgba(217,201,254,.3),0 0 28px rgba(139,107,181,.12);}
+  50%{text-shadow:0 0 20px rgba(217,201,254,.5),0 0 44px rgba(139,107,181,.2),0 0 60px rgba(217,201,254,.1);}
+}
+@keyframes sparkle{0%,100%{opacity:.3;transform:scale(.8);}50%{opacity:1;transform:scale(1.2);}}
+
+section{padding:62px 26px;position:relative;}
+
+/* contenido de secciones (sobre el fondo acuarela ambiental) */
+.fcontent{position:relative;z-index:2;}
+
+/* ── LOADER ── */
+#loader{
+  position:fixed;inset:0;z-index:9999;display:none;
+  background:var(--bg);
+  flex-direction:column;align-items:center;justify-content:center;gap:18px;
+}
+.ld-name{font-family:'Great Vibes',cursive;font-size:84px;color:var(--accent);display:flex;gap:1px;padding-top:16px;}
+.ld-name span{opacity:0;display:inline-block;transform:translateY(22px);}
+.ld-tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;letter-spacing:5px;text-transform:uppercase;color:var(--accent);opacity:0;}
+
+/* ── PÉTALOS ── */
+#petals{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.petal{position:absolute;top:-30px;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;opacity:0;}
+
+/* ── HERO ── */
+.hero{position:relative;width:100%;min-height:100dvh;display:flex;flex-direction:column;background:#1a0a30;}
+.hero-bg{position:absolute;inset:0;background:url('./foto-hero.jpg') center 18%/cover no-repeat;}
+.hero-veil{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(45,26,78,.12) 0%,rgba(45,26,78,0) 32%,rgba(253,248,255,.42) 64%,rgba(253,248,255,.92) 84%,#fdf8ff 100%);}
+.hero-top{position:relative;z-index:3;padding:30px 26px 0;text-align:center;}
+.hero-eyebrow{font-family:'Cinzel',serif;font-size:12px;letter-spacing:6px;text-transform:uppercase;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.45);opacity:0;}
+.hero-bottom{position:relative;z-index:3;margin-top:auto;padding:0 28px 60px;text-align:center;}
+.hero-name{
+  font-family:'Great Vibes',cursive;font-size:92px;line-height:.95;margin-bottom:6px;padding-top:18px;
+  transform:translateY(30px);opacity:0;
+  background:linear-gradient(180deg,#f3edf9 0%,var(--light) 28%,var(--accent) 62%,var(--dark) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 2px 18px rgba(90,61,128,.3)) drop-shadow(0 0 26px rgba(217,201,254,.35));
+  animation:floatGlow 4s ease-in-out infinite;
+}
+.hero-sub{display:flex;flex-direction:column;align-items:center;gap:2px;transform:translateY(16px);opacity:0;}
+.xv-num{
+  font-family:'Cinzel',serif;font-weight:600;font-size:46px;letter-spacing:10px;line-height:1;padding-left:10px;
+  background:linear-gradient(180deg,#f3edf9 0%,#d9c9fe 28%,#8b6bb5 62%,#5a3d80 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 0 12px rgba(217,201,254,.4));position:relative;display:inline-block;
+}
+.xv-num::after{content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);width:54px;height:1px;background:var(--accent);opacity:.5;}
+.xv-anos{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;letter-spacing:6px;text-transform:uppercase;color:var(--dark);margin-top:14px;}
+
+/* ── ORNAMENTO ── */
+.orn{display:flex;justify-content:center;padding:6px 0;}
+.orn img{width:88%;max-width:380px;height:auto;object-fit:contain;
+  -webkit-mask-image:linear-gradient(to right,transparent,black 22%,black 78%,transparent);
+  mask-image:linear-gradient(to right,transparent,black 22%,black 78%,transparent);}
+
+/* ── FECHA ── */
+.fecha-sec{padding:30px 26px 6px;text-align:center;}
+.fecha-line{display:flex;align-items:center;justify-content:center;gap:18px;}
+.fecha-line .fl-bar{flex:1;max-width:58px;height:1px;background:linear-gradient(to right,transparent,var(--accent));opacity:.5;}
+.fecha-line .fl-bar.right{background:linear-gradient(to left,transparent,var(--accent));}
+.fecha-txt{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:16px;letter-spacing:7px;text-transform:uppercase;color:var(--dark);}
+
+/* ── FRASE INICIAL (tarjeta con tiara + flores) ── */
+.intro-card{
+  position:relative;background:var(--paper);border-radius:8px;
+  margin:8px auto 0;max-width:392px;padding:78px 30px 64px;overflow:hidden;
+  box-shadow:0 14px 50px rgba(45,26,78,.10);border:1px solid rgba(217,201,254,.4);
+}
+.intro-card .fl{width:46%;max-width:175px;}
+.intro-tiara{position:relative;z-index:2;display:flex;justify-content:center;margin-bottom:18px;}
+.intro-tiara img{width:96px;height:auto;filter:drop-shadow(0 4px 10px rgba(45,26,78,.18));}
+.intro-text{position:relative;z-index:2;font-family:'Cormorant Garamond',serif;font-size:18.5px;line-height:1.78;color:var(--ink);text-align:center;font-weight:500;}
+.intro-text .lead::first-letter{font-family:'Great Vibes',cursive;font-size:52px;color:var(--accent);float:left;line-height:.7;padding:8px 8px 0 0;}
+.intro-text p+p{margin-top:16px;}
+
+/* ── FAMILIA / PADRINOS ── */
+.fam-block{text-align:center;}
+.fam-names{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--dark);line-height:1.7;font-weight:500;}
+.fam-amp{font-family:'Great Vibes',cursive;font-size:30px;color:var(--accent);display:block;margin:2px 0;}
+.fam-role{font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+
+/* ── COUNTDOWN sobre foto ── */
+.cd-hero{position:relative;min-height:78vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 24px;overflow:hidden;}
+.cd-hero-bg{position:absolute;inset:0;background:url('./foto-escaleras.jpg') center 22%/cover no-repeat;}
+.cd-hero-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(45,26,78,.55),rgba(45,26,78,.38) 45%,rgba(45,26,78,.62));}
+.cd-hero .cd-pre,.cd-hero .cd-row,.cd-hero .cd-post{position:relative;z-index:2;}
+.cd-pre{font-family:'Great Vibes',cursive;font-size:46px;color:#fff;text-shadow:0 3px 18px rgba(0,0,0,.4);margin-bottom:22px;line-height:1;}
+.cd-row{display:flex;justify-content:center;gap:10px;}
+.cd-box{
+  min-width:70px;padding:16px 8px;text-align:center;border-radius:50%/42%;
+  border:1px solid rgba(255,255,255,.7);background:rgba(45,26,78,.28);backdrop-filter:blur(2px);
+}
+.cd-num{font-family:'Cormorant Garamond',serif;font-size:34px;color:#fff;line-height:1;font-weight:600;font-variant-numeric:tabular-nums;}
+.cd-lbl{font-family:'Lato',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.85);margin-top:6px;}
+.cd-post{font-family:'Great Vibes',cursive;font-size:38px;color:#fff;text-shadow:0 3px 18px rgba(0,0,0,.4);margin-top:24px;line-height:1;}
+
+/* ── UBICACIÓN ── */
+.loc-intro{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--dark);margin-bottom:8px;}
+.loc-pin{display:flex;justify-content:center;margin:10px 0 26px;}
+.loc-pin img{width:30px;height:30px;opacity:.8;}
+.loc-card{background:var(--paper);border-radius:16px;padding:30px 24px;box-shadow:0 8px 40px rgba(45,26,78,.09);text-align:center;border:1px solid rgba(217,201,254,.35);}
+.loc-card .lt{font-family:'Great Vibes',cursive;font-size:40px;color:var(--dark);margin-bottom:2px;padding-top:8px;}
+.loc-card .ls{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+.loc-card p{font-size:15.5px;margin:3px 0;line-height:1.6;font-weight:400;color:var(--ink);}
+.loc-times{display:flex;justify-content:center;gap:30px;margin-top:16px;}
+.loc-times .lt-lbl{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
+.loc-times .lt-h{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--dark);font-weight:600;}
+.loc-times .lt-sep{width:1px;background:var(--light);opacity:.6;}
+.map-wrap{margin-top:20px;border-radius:14px;overflow:hidden;box-shadow:0 4px 16px rgba(45,26,78,.1);}
+.btn{display:inline-block;margin-top:18px;padding:12px 32px;background:var(--accent);color:#fff;border-radius:30px;font-family:'Cinzel',serif;font-size:11px;text-transform:uppercase;letter-spacing:3px;text-decoration:none;transition:background .3s,transform .3s;border:none;cursor:pointer;}
+.btn:hover{background:var(--dark);transform:translateY(-2px);}
+
+/* ── ITINERARIO (formato Regina) ── */
+.timeline{position:relative;max-width:360px;margin:0 auto;padding:6px 0;}
+.timeline::before{content:'';position:absolute;top:34px;bottom:34px;left:50%;transform:translateX(-50%);width:2px;
+  background:linear-gradient(to bottom,var(--dark),var(--accent) 45%,var(--light));border-radius:2px;}
+.tl-item{display:grid;grid-template-columns:1fr 30px 1fr;align-items:center;column-gap:8px;margin:6px 0;}
+.tl-icon{display:flex;justify-content:flex-end;}
+.tl-icon img{width:54px;height:54px;object-fit:contain;}
+.tl-dot{justify-self:center;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2.5px solid var(--accent);z-index:2;box-shadow:0 0 0 4px rgba(217,201,254,.25);}
+.tl-text{text-align:left;}
+.tl-time{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--accent);line-height:1.05;}
+.tl-ev{font-family:'Lato',sans-serif;font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);margin-top:2px;line-height:1.35;}
+.tl-fin .tl-icon{position:relative;}
+.tl-gracias{font-family:'Great Vibes',cursive;font-size:24px;color:var(--accent);}
+
+/* ── DRESS CODE ── */
+.dc-note{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;letter-spacing:2px;text-transform:uppercase;color:var(--dark);margin-bottom:30px;font-weight:500;}
+.dc-circles{display:flex;justify-content:center;gap:34px;margin-bottom:26px;}
+.dc-c{text-align:center;}
+.dc-c .ring{width:118px;height:118px;border-radius:50%;background:var(--paper);box-shadow:0 8px 28px rgba(45,26,78,.1);border:1px solid rgba(217,201,254,.5);display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.dc-c .ring img{width:58px;height:58px;}
+.dc-c .dc-lbl{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);}
+.dc-reserve{text-align:center;font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:1px;color:var(--ink-soft);text-transform:uppercase;}
+.dc-reserve b{color:var(--dark);}
+
+/* ── MESA DE REGALOS ── */
+.gift-intro{text-align:center;font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.65;color:var(--ink);margin:4px auto 28px;max-width:340px;font-weight:500;}
+.gift-sobre-label{font-family:'Cinzel',serif;font-size:16px;letter-spacing:5px;text-transform:uppercase;color:var(--dark);text-align:center;margin:8px 0 18px;}
+.silver-circle{
+  width:128px;height:128px;border-radius:50%;margin:0 auto;
+  display:flex;align-items:center;justify-content:center;position:relative;
+  background:radial-gradient(circle at 36% 30%,#ffffff 0%,#eef2f9 38%,#cdd6e6 70%,#aab8d2 100%);
+  box-shadow:0 8px 26px rgba(45,26,78,.16),inset 0 2px 6px rgba(255,255,255,.95),inset 0 -5px 12px rgba(120,140,180,.45);
+}
+.silver-circle::after{content:'';position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle at 70% 25%,rgba(255,255,255,.9) 0,transparent 8%),radial-gradient(circle at 22% 60%,rgba(255,255,255,.7) 0,transparent 7%),radial-gradient(circle at 60% 75%,rgba(255,255,255,.6) 0,transparent 6%);opacity:.8;pointer-events:none;}
+.silver-circle img{width:58px;height:58px;position:relative;z-index:1;}
+.gift-sobre-desc{text-align:center;font-family:'Cormorant Garamond',serif;font-size:15.5px;line-height:1.7;color:var(--ink-soft);margin-top:20px;max-width:320px;margin-left:auto;margin-right:auto;font-style:italic;}
+
+/* ── GALERÍA CROSSFADE ── */
+#sgal{padding:0;height:300vh;}
+.cf-frame{position:sticky;top:0;width:100%;height:100dvh;overflow:hidden;}
+.cf-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;will-change:opacity;}
+.cf-fade-top{position:absolute;top:0;left:0;right:0;height:20%;z-index:2;background:linear-gradient(to bottom,#fdf8ff,rgba(247,254,255,.5) 55%,transparent);pointer-events:none;}
+.cf-fade-bot{position:absolute;bottom:0;left:0;right:0;height:20%;z-index:2;background:linear-gradient(to top,#fdf8ff,rgba(247,254,255,.5) 55%,transparent);pointer-events:none;}
+.cf-label{position:absolute;top:42px;left:0;right:0;z-index:3;text-align:center;}
+.cf-label .sec-title{margin-bottom:0;}
+
+/* foto del caballo: recorte vertical (cabeza del caballo + quinceañera), llena el marco como las demás */
+#cfImg2{object-position:center;}
+
+/* ── ÁLBUM / COMPARTE TUS FOTOS ── */
+.album{position:relative;overflow:hidden;padding:0;}
+.album-bg{position:absolute;inset:0;background:url('./foto-perfil.jpg') center 20%/cover no-repeat;}
+.album-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(45,26,78,.86),rgba(45,26,78,.72) 50%,rgba(45,26,78,.9));}
+.album-inner{position:relative;z-index:2;padding:70px 28px;text-align:center;color:#fff;}
+.album-inner .sec-title{background:linear-gradient(90deg,#f3edf9,#fff 50%,#e0d4f8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:none;}
+.album-sub{font-family:'Cormorant Garamond',serif;font-size:16px;line-height:1.7;color:rgba(255,255,255,.92);margin:4px auto 6px;max-width:330px;}
+.album-hash{font-family:'Cinzel',serif;font-size:15px;letter-spacing:1px;color:#e0d4f8;margin:10px 0 18px;}
+.album-cam{display:flex;justify-content:center;margin:14px 0;}
+.album-cam img{width:54px;height:54px;filter:brightness(0) invert(1);opacity:.92;}
+.qr-card{display:inline-block;background:#fff;padding:14px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.35);margin:14px 0 18px;}
+.qr-card img{width:148px;height:148px;display:block;}
+.album-btn{display:inline-flex;align-items:center;gap:8px;margin-top:6px;padding:13px 30px;background:rgba(255,255,255,.95);color:var(--dark);border-radius:30px;font-family:'Cinzel',serif;font-size:11px;text-transform:uppercase;letter-spacing:2px;text-decoration:none;}
+
+/* ── SOLO ADULTOS ── */
+.kids{text-align:center;}
+.kids-icon{display:flex;justify-content:center;margin-bottom:16px;}
+.kids-icon img{width:40px;height:40px;opacity:.7;}
+.kids-text{font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.8;color:var(--ink);max-width:340px;margin:0 auto;font-weight:500;}
+
+/* ── RSVP ── */
+.rsvp-card{
+  position:relative;overflow:hidden;border-radius:22px;padding:46px 28px;text-align:center;
+  background:linear-gradient(160deg,var(--dark),var(--accent));box-shadow:0 14px 44px rgba(45,26,78,.28);
+}
+.rsvp-card .sec-title{background:linear-gradient(90deg,#f3edf9,#fff 50%,#e0d4f8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:none;margin-bottom:4px;}
+.rsvp-card .r-date{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;letter-spacing:1px;color:#e0d4f8;margin-bottom:8px;text-transform:uppercase;}
+.rsvp-card .r-msg{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(255,255,255,.92);margin-bottom:6px;}
+.rsvp-card .r-pases{font-family:'Lato',sans-serif;font-size:13px;color:#e0d4f8;margin-bottom:20px;min-height:18px;}
+.btn-wa{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 34px;min-height:48px;background:#fff;color:var(--dark);border-radius:30px;border:none;cursor:pointer;font-family:'Cinzel',serif;font-size:12px;text-transform:uppercase;letter-spacing:2px;font-weight:600;transition:transform .3s;}
+.btn-wa:hover{transform:translateY(-2px);}
+.btn-wa svg{width:18px;height:18px;}
+
+/* ── CIERRE + FOOTER ── */
+.closing{position:relative;min-height:88vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:60px 28px;}
+.closing-bg{position:absolute;inset:0;background:url('./foto-perfil.jpg') center 15%/cover no-repeat;}
+.closing-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(45,26,78,.35),rgba(45,26,78,.55) 60%,rgba(45,26,78,.8));}
+.closing-text,.closing-sign{position:relative;z-index:2;}
+.closing-text{font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.8;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.4);max-width:340px;margin-bottom:18px;font-weight:500;}
+.closing-sign{font-family:'Great Vibes',cursive;font-size:64px;color:#fff;text-shadow:0 3px 20px rgba(0,0,0,.45);line-height:1;}
+footer{padding:46px 20px 56px;text-align:center;background:var(--bg);}
+footer .fn{font-family:'Great Vibes',cursive;font-size:46px;padding-top:10px;
+  background:linear-gradient(90deg,var(--dark),var(--light) 50%,var(--dark));background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 7s ease-in-out infinite;}
+footer .fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-top:6px;}
+.credit{margin-top:24px;font-family:'Lato',sans-serif;font-size:11px;letter-spacing:1px;color:var(--ink-soft);opacity:.65;}
+.credit a{color:var(--accent);text-decoration:none;}
+
+/* ── MÚSICA FAB ── */
+.music-fab{position:fixed;bottom:22px;right:22px;z-index:998;width:54px;height:54px;border-radius:50%;border:none;cursor:pointer;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(139,107,181,.5);animation:fabpulse 2.8s infinite ease-out;}
+@keyframes fabpulse{0%{box-shadow:0 0 0 0 rgba(139,107,181,.55);}70%{box-shadow:0 0 0 16px rgba(139,107,181,0);}100%{box-shadow:0 0 0 0 rgba(139,107,181,0);}}
+.music-fab svg{width:23px;height:23px;}
+
+/* ── ENVELOPE ── */
+#envelope-screen{position:fixed;inset:0;z-index:10000;overflow:hidden;cursor:pointer;opacity:0;background:#fff;}
+#env-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:2;transform:scale(1.18);}
+#env-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:3;opacity:0;transform:scale(1.18);}
+#env-flash{position:fixed;inset:0;background:#fff;z-index:9999;opacity:0;pointer-events:none;}
+.envelope-hint{position:absolute;bottom:50px;left:50%;transform:translateX(-50%);font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:5px;text-transform:uppercase;color:rgba(45,26,78,.78);opacity:0;cursor:pointer;white-space:nowrap;z-index:10;text-shadow:0 1px 4px rgba(255,255,255,.6);}
+.envelope-hint::after{content:'';display:block;width:32px;height:1px;background:linear-gradient(90deg,transparent,rgba(139,107,181,.5),transparent);margin:10px auto 0;animation:hintPulse 2.2s ease-in-out infinite;}
+@keyframes hintPulse{0%,100%{opacity:.4;width:32px;}50%{opacity:1;width:54px;}}
+
+.rv{will-change:transform,opacity;}
+</style>
+</head>
+<body>
+
+<!-- ENVELOPE -->
+<div id="envelope-screen" role="button" aria-label="Toca para abrir tu invitación">
+  <img id="env-image" src="./sobre.png" alt="Invitación XV Años Sofía">
+  <video id="env-video" src="./sobre-apertura.mp4" playsinline webkit-playsinline muted preload="auto"></video>
+  <p class="envelope-hint" id="env-hint">Toca para abrir</p>
+</div>
+<div id="env-flash"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-name" id="ldName"></div>
+  <div class="ld-tag" id="ldTag">Mis XV Años · 9 Agosto 2026</div>
+</div>
+
+<!-- PÉTALOS -->
+<div id="petals"></div>
+
+<div class="wrap" style="visibility:hidden">
+
+  <!-- HERO -->
+  <section class="hero" style="padding:0;">
+    <div class="hero-bg"></div>
+    <div class="hero-veil"></div>
+    <div class="hero-top"><div class="hero-eyebrow" id="hEy">Mis XV Años</div></div>
+    <div class="hero-bottom">
+      <h1 class="hero-name" id="hNm">Sofía</h1>
+      <div class="hero-sub" id="hSb">
+        <span class="xv-num">XV</span>
+        <span class="xv-anos">Años</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FECHA -->
+  <div class="fecha-sec rv">
+    <div class="fecha-line">
+      <div class="fl-bar"></div>
+      <div class="fecha-txt">9 · Agosto · 2026</div>
+      <div class="fl-bar right"></div>
+    </div>
+  </div>
+
+  <!-- FRASE INICIAL -->
+  <section style="padding-top:40px;">
+    <div class="intro-card rv">
+      <div class="intro-tiara"><img src="./tiara.svg" alt=""></div>
+      <div class="intro-text">
+        <p class="lead">Con el corazón lleno de ilusión y una sonrisa que no puedo ocultar, llega un día que soñé desde niña. Un día rodeado de amor, abrazos sinceros y momentos que se quedarán guardados para siempre.</p>
+        <p>Hoy quiero que seas parte de esta alegría tan especial y que celebremos juntos mis quince años, el comienzo de una nueva etapa llena de sueños por cumplir.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MIS PAPÁS -->
+  <section class="rv">
+    <h2 class="sec-title">Mis Papás</h2>
+    <div class="heart-div">
+      <span class="hd-bar"></span>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.9-10-9.5C.5 8.5 2 5 5.3 5c1.9 0 3.3 1.1 4.2 2.4C10.4 6.1 11.8 5 13.7 5 17 5 18.5 8.5 17 11.5 14.5 16.1 12 21 12 21z"/></svg>
+      <span class="hd-bar r"></span>
+    </div>
+    <div class="fam-block">
+      <div class="fam-names">José García Rincon<span class="fam-amp">&amp;</span>Dulce Pilar Martínez González</div>
+    </div>
+  </section>
+
+  <!-- MIS PADRINOS -->
+  <section class="rv">
+    <h2 class="sec-title">Mis Padrinos</h2>
+    <div class="heart-div">
+      <span class="hd-bar"></span>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.9-10-9.5C.5 8.5 2 5 5.3 5c1.9 0 3.3 1.1 4.2 2.4C10.4 6.1 11.8 5 13.7 5 17 5 18.5 8.5 17 11.5 14.5 16.1 12 21 12 21z"/></svg>
+      <span class="hd-bar r"></span>
+    </div>
+    <div class="fam-block">
+      <div class="fam-names">Gustavo Pérez Ramos<span class="fam-amp">&amp;</span>Elsa García Rincon</div>
+    </div>
+  </section>
+
+  <!-- MIS HERMANOS -->
+  <section class="rv">
+    <h2 class="sec-title">Mis Hermanos</h2>
+    <div class="heart-div">
+      <span class="hd-bar"></span>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.9-10-9.5C.5 8.5 2 5 5.3 5c1.9 0 3.3 1.1 4.2 2.4C10.4 6.1 11.8 5 13.7 5 17 5 18.5 8.5 17 11.5 14.5 16.1 12 21 12 21z"/></svg>
+      <span class="hd-bar r"></span>
+    </div>
+    <div class="fam-block">
+      <div class="fam-names">José García Martínez<span class="fam-amp">&amp;</span>Isabel García Martínez</div>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section class="cd-hero rv" style="padding:0;">
+    <div class="cd-hero-bg"></div>
+    <div class="cd-hero-veil"></div>
+    <div class="cd-pre script">Tan sólo faltan</div>
+    <div class="cd-row">
+      <div class="cd-box"><div class="cd-num" id="cdD">000</div><div class="cd-lbl">Días</div></div>
+      <div class="cd-box"><div class="cd-num" id="cdH">00</div><div class="cd-lbl">Horas</div></div>
+      <div class="cd-box"><div class="cd-num" id="cdM">00</div><div class="cd-lbl">Minutos</div></div>
+      <div class="cd-box"><div class="cd-num" id="cdS">00</div><div class="cd-lbl">Segundos</div></div>
+    </div>
+    <div class="cd-post script">Para mi gran día</div>
+  </section>
+
+  <!-- CUÁNDO Y DÓNDE -->
+  <section id="subic">
+    <h2 class="sec-title rv">Cuándo &amp; Dónde</h2>
+    <p class="loc-intro rv">¡Me encantaría que me acompañaras!</p>
+    <div class="loc-pin rv"><img src="./ic-pin.svg" alt=""></div>
+    <div class="loc-card rv">
+      <div class="lt">Misa de Acción de Gracias</div>
+      <div class="ls">Parroquia San Juan Bautista</div>
+      <p><strong>Santos Degollado 1</strong></p>
+      <p>Victoria, Guanajuato</p>
+      <div class="loc-times">
+        <div><div class="lt-lbl">Misa</div><div class="lt-h">17:00 hrs</div></div>
+      </div>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3743!2d-100.2161348!3d21.2118237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d4eafff04a8589%3A0x271bc7be4327195c!2sParroquia%20San%20Juan%20Bautista!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx" width="100%" height="210" style="border:0;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <a class="btn" href="https://www.google.com/maps/place/Parroquia+San+Juan+Bautista/@21.2118237,-100.2161348,17z" target="_blank" rel="noopener">Cómo Llegar</a>
+    </div>
+
+    <div class="loc-card rv" style="margin-top:28px;">
+      <div class="lt">Recepción</div>
+      <div class="ls">Salón de Eventos</div>
+      <p><strong>Victoria, Guanajuato</strong></p>
+      <p style="font-style:italic;color:var(--ink-soft);">Ubicación por confirmar</p>
+      <div class="loc-times">
+        <div><div class="lt-lbl">Recepción</div><div class="lt-h">18:00 hrs</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDARIO -->
+  <section class="rv" style="text-align:center;padding-top:8px;">
+    <div class="eyebrow">No lo olvides</div>
+    <h2 class="sec-title">Guárdalo</h2>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--dark);margin-bottom:18px;">Agrega el evento a tu calendario</p>
+    <a class="btn" id="gcalBtn" href="#" target="_blank" rel="noopener">Añadir a Google Calendar</a>
+  </section>
+
+  <!-- ITINERARIO -->
+  <section id="siti">
+    <div class="fcontent">
+      <div class="eyebrow rv">Programa del Día</div>
+      <h2 class="sec-title rv">Itinerario</h2>
+      <div class="timeline">
+        <div class="tl-item rv">
+          <div class="tl-icon"><img src="./ic-iglesia.svg" alt="Misa"></div>
+          <div class="tl-dot"></div>
+          <div class="tl-text"><div class="tl-time">17:00</div><div class="tl-ev">Misa</div></div>
+        </div>
+        <div class="tl-item rv">
+          <div class="tl-icon"><img src="./ic-recepcion.svg" alt="Recepción"></div>
+          <div class="tl-dot"></div>
+          <div class="tl-text"><div class="tl-time">18:00</div><div class="tl-ev">Recepción</div></div>
+        </div>
+        <div class="tl-item rv">
+          <div class="tl-icon"><img src="./ic-cena.svg" alt="Cena"></div>
+          <div class="tl-dot"></div>
+          <div class="tl-text"><div class="tl-time">18:30</div><div class="tl-ev">Cena</div></div>
+        </div>
+        <div class="tl-item rv">
+          <div class="tl-icon"><img src="./ic-vals.svg" alt="Vals"></div>
+          <div class="tl-dot"></div>
+          <div class="tl-text"><div class="tl-time">20:30</div><div class="tl-ev">Vals</div></div>
+        </div>
+        <div class="tl-item tl-fin rv">
+          <div class="tl-icon"><img src="./ic-fin.svg" alt="Fin del evento"></div>
+          <div class="tl-dot"></div>
+          <div class="tl-text"><div class="tl-time">00:00</div><div class="tl-ev">Fin del Evento</div><div class="tl-gracias">¡Gracias!</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DRESS CODE -->
+  <section class="rv">
+    <div class="eyebrow">Etiqueta</div>
+    <h2 class="sec-title">Código de Vestimenta</h2>
+    <div class="dc-note">Formal</div>
+    <div class="dc-circles">
+      <div class="dc-c"><div class="ring"><img src="./ic-traje.svg" alt="Caballeros"></div><div class="dc-lbl">Caballeros</div></div>
+      <div class="dc-c"><div class="ring"><img src="./ic-vestido.svg" alt="Damas"></div><div class="dc-lbl">Damas</div></div>
+    </div>
+    <p class="dc-reserve">Por confirmar</p>
+  </section>
+
+  <!-- MESA DE REGALOS -->
+  <section id="sgifts">
+    <div class="fcontent">
+      <div class="eyebrow rv">Con Cariño</div>
+      <h2 class="sec-title rv">Mesa de Regalos</h2>
+      <p class="gift-intro rv">¡Tu presencia es mi mejor regalo! Pero si deseas hacerme un obsequio, puedo sugerirte:</p>
+      <div class="gift-sobre-label rv">Lluvia de Sobres</div>
+      <div class="silver-circle rv"><img src="./ic-sobre.svg" alt="Sobre"></div>
+      <p class="gift-sobre-desc rv">Es la tradición de obsequiar a la quinceañera un sobre con un detalle en efectivo el día del evento.</p>
+      <div class="gift-sobre-label rv" style="margin-top:42px;">Obsequio de tu Elección</div>
+      <div class="silver-circle rv"><img src="./ic-regalo.svg" alt="Regalo"></div>
+      <p class="gift-sobre-desc rv">Cualquier detalle elegido con cariño, será atesorado para siempre.</p>
+    </div>
+  </section>
+
+  <!-- MOMENTOS / GALERÍA -->
+  <section id="sgal">
+    <div class="cf-frame">
+      <div class="cf-label"><h2 class="sec-title">Momentos</h2></div>
+      <img class="cf-img" id="cfImg1" src="./foto-banca.jpg" alt="Sofía">
+      <img class="cf-img" id="cfImg2" src="./foto-caballo.jpg" alt="Sofía montando a caballo negro">
+      <img class="cf-img" id="cfImg3" src="./foto-escaleras.jpg" alt="Sofía">
+      <div class="cf-fade-top"></div>
+      <div class="cf-fade-bot"></div>
+    </div>
+  </section>
+
+  <!-- ÁLBUM COMPARTIDO -->
+  <section class="album">
+    <div class="album-bg"></div>
+    <div class="album-veil"></div>
+    <div class="album-inner">
+      <h2 class="sec-title rv">Comparte tus Fotos</h2>
+      <p class="album-sub rv">Ayúdame a crear recuerdos inolvidables. Comparte todas tus fotos en Instagram con el hashtag:</p>
+      <div class="album-hash rv">#SofíaXV</div>
+      <div class="album-cam rv"><img src="./ic-camara.svg" alt=""></div>
+      <p class="album-sub rv">O sube los momentos que captures con tu celular a nuestro álbum compartido escaneando el código:</p>
+      <!-- PENDIENTE: link real del álbum compartido (Google Fotos / Drive) -->
+      <div class="qr-card rv"><img src="./qr-album.png" alt="Código QR del álbum compartido"></div><br>
+      <a class="album-btn rv" href="#" target="_blank" rel="noopener">Subir Fotos Aquí</a>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section id="srsvp">
+    <div class="rsvp-card rv">
+      <div class="eyebrow" style="color:#e0d4f8;">Confirma tu Asistencia</div>
+      <h2 class="sec-title">R.S.V.P.</h2>
+      <div class="r-date">Por confirmar</div>
+      <p class="r-msg">Tu confirmación es muy importante para mí.</p>
+      <p class="r-pases" id="rsvpPases"></p>
+      <button class="btn-wa" id="rsvpBtn" aria-label="Confirmar asistencia">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        Confirmar Asistencia
+      </button>
+      <p class="r-status" id="rsvpStatus" style="font-family:'Cormorant Garamond',serif;font-size:14px;color:rgba(255,255,255,.85);margin-top:12px;min-height:20px;"></p>
+    </div>
+  </section>
+
+  <!-- CIERRE -->
+  <section class="closing">
+    <div class="closing-bg"></div>
+    <div class="closing-veil"></div>
+    <p class="closing-text rv">Con mucha ilusión y cariño, te espero para compartir juntos este día tan especial. Tu presencia hará de esta celebración un recuerdo lleno de alegría y amor.</p>
+    <div class="closing-sign script rv">Sofía</div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="fn">Sofía</div>
+    <div class="fd">9 · Agosto · 2026</div>
+    <p class="credit">Diseño por <a href="https://instagram.com/elysium.invitaciones" target="_blank" rel="noopener">@elysium.invitaciones</a></p>
+  </footer>
+
+</div>
+
+<!-- MÚSICA -->
+<button class="music-fab" id="musicFab" aria-label="Reproducir música">
+  <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+</button>
+<audio id="bgAudio" loop preload="none">
+  <source src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/audio/xv-sofia/cancion.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+window.scrollTo(0,0);
+history.scrollRestoration='manual';
+gsap.registerPlugin(ScrollTrigger);
+
+/* ── ENVELOPE ── */
+(function () {
+  var envScreen = document.getElementById('envelope-screen');
+  var envImage  = document.getElementById('env-image');
+  var envVideo  = document.getElementById('env-video');
+  var envFlash  = document.getElementById('env-flash');
+  var hint      = document.getElementById('env-hint');
+  var opened    = false;
+
+  gsap.timeline()
+    .to(envScreen, { opacity:1, duration:1.2, ease:'power2.out', delay:0.3 })
+    .to(hint,      { opacity:1, duration:0.9, ease:'power2.out' }, '-=0.5');
+  gsap.to(envImage, { scale:1.20, duration:2.2, ease:'sine.inOut', repeat:-1, yoyo:true, delay:1.5 });
+
+  var flashStarted=false, invitationReady=false;
+  function prepareInvitation(){
+    if(invitationReady) return; invitationReady=true;
+    envScreen.style.display='none';
+    document.querySelector('.wrap').style.visibility='visible';
+    launchPage();
+  }
+  function revealInvitation(){
+    prepareInvitation();
+    gsap.to(envFlash,{opacity:0,duration:1.2,ease:'power2.out',onComplete:function(){envFlash.style.display='none';}});
+  }
+  envVideo.addEventListener('timeupdate',function(){
+    if(!flashStarted && envVideo.duration && envVideo.currentTime>=envVideo.duration-2){
+      flashStarted=true;
+      gsap.to(envFlash,{opacity:1,duration:1,ease:'power2.in',onComplete:revealInvitation});
+    }
+  });
+  envVideo.addEventListener('ended',function(){gsap.set(envFlash,{opacity:1});revealInvitation();});
+  function openEnvelope(){
+    if(opened) return; opened=true;
+    gsap.killTweensOf(envImage);
+    gsap.to(hint,{opacity:0,duration:0.2});
+    var p=envVideo.play();
+    gsap.to(envImage,{opacity:0,duration:0.55,ease:'power2.inOut',onComplete:function(){envImage.style.display='none';}});
+    gsap.to(envVideo,{opacity:1,duration:0.55,ease:'power2.inOut'});
+    if(p!==undefined){p.catch(function(){revealInvitation();});}
+  }
+  envScreen.addEventListener('click',openEnvelope);
+  envScreen.addEventListener('touchstart',function(e){e.preventDefault();openEnvelope();},{passive:false});
+}());
+
+/* ── HERO ENTRANCE ── */
+function launchPage(){
+  gsap.timeline({defaults:{ease:'power2.out'}})
+    .to('#hEy',{opacity:1,duration:1.4},0.2)
+    .to('#hNm',{opacity:1,y:0,duration:1.8,ease:'power3.out'},'-=1')
+    .to('#hSb',{opacity:1,y:0,duration:1.4},'-=1');
+  initPetals();
+  initScrollReveal();
+  initTimeline();
+  initCrossfade();
+}
+
+/* ── PÉTALOS azules ── */
+function initPetals(){
+  const layer=document.getElementById('petals');
+  const colors=['#d9c9fe','#eec8cc','#b1dd8b','#fff994','#e0d4f8','#c8e8b0'];
+  for(let i=0;i<26;i++){
+    const p=document.createElement('div');p.className='petal';
+    const w=6+Math.random()*8;
+    p.style.cssText=`width:${w}px;height:${w*1.4}px;background:${colors[i%colors.length]};left:${Math.random()*100}%;`;
+    layer.appendChild(p);animPetal(p);
+  }
+}
+function animPetal(p){
+  const h=window.innerHeight;
+  gsap.set(p,{y:-30,x:0,opacity:0,rotation:Math.random()*360});
+  gsap.timeline({delay:Math.random()*16})
+    .to(p,{opacity:.5,duration:3,ease:'none'})
+    .to(p,{y:h+60,x:(Math.random()*120)-60,rotation:`+=${200+Math.random()*360}`,duration:20+Math.random()*22,ease:'none',
+      onComplete(){gsap.set(p,{left:Math.random()*100+'%',x:0});animPetal(p);}},'<');
+}
+
+/* ── SCROLL REVEAL ── */
+function initScrollReveal(){
+  document.querySelectorAll('.rv').forEach(el=>{
+    gsap.fromTo(el,{y:34,opacity:0},{y:0,opacity:1,duration:1.2,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 88%'}});
+  });
+}
+
+/* ── ITINERARIO ── */
+function initTimeline(){
+  document.querySelectorAll('.tl-item').forEach((row,i)=>{
+    gsap.fromTo(row,{x:-26,opacity:0},{x:0,opacity:1,duration:1,ease:'power2.out',
+      scrollTrigger:{trigger:'#siti',start:'top 76%'},delay:i*0.14});
+  });
+}
+
+/* ── CROSSFADE GALERÍA ── */
+function initCrossfade(){
+  gsap.set('#cfImg2,#cfImg3',{opacity:0});
+  ScrollTrigger.create({
+    trigger:'#sgal',start:'top top',end:'bottom bottom',scrub:1,
+    onUpdate(self){
+      const p=self.progress;
+      const i1=1-gsap.utils.clamp(0,1,(p-0.25)/0.2);
+      const i2=Math.min(gsap.utils.clamp(0,1,(p-0.25)/0.2),1-gsap.utils.clamp(0,1,(p-0.65)/0.2));
+      const i3=gsap.utils.clamp(0,1,(p-0.65)/0.2);
+      gsap.set('#cfImg1',{opacity:i1});
+      gsap.set('#cfImg2',{opacity:i2});
+      gsap.set('#cfImg3',{opacity:i3});
+    }
+  });
+}
+
+/* ── COUNTDOWN ── */
+(function(){
+  const target=new Date('2026-08-09T17:00:00-05:00').getTime();
+  function tick(){
+    const d=target-Date.now();if(d<=0)return;
+    document.getElementById('cdD').textContent=String(Math.floor(d/86400000)).padStart(3,'0');
+    document.getElementById('cdH').textContent=String(Math.floor(d%86400000/3600000)).padStart(2,'0');
+    document.getElementById('cdM').textContent=String(Math.floor(d%3600000/60000)).padStart(2,'0');
+    document.getElementById('cdS').textContent=String(Math.floor(d%60000/1000)).padStart(2,'0');
+  }
+  tick();setInterval(tick,1000);
+})();
+
+/* ── GOOGLE CALENDAR ── */
+(function(){
+  const t=encodeURIComponent('XV Años de Sofía');
+  const d=encodeURIComponent('Misa 17:00 hrs · Recepción 18:00 hrs — Victoria, Guanajuato');
+  const l=encodeURIComponent('Parroquia San Juan Bautista, Santos Degollado 1, Victoria, Guanajuato');
+  document.getElementById('gcalBtn').href=
+    `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${t}&dates=20260809T220000Z/20260810T050000Z&details=${d}&location=${l}`;
+})();
+
+/* ── RSVP (panel-invitados) ── */
+(function(){
+  const params=new URLSearchParams(location.search);
+  const para=params.get('para');
+  const pases=params.get('pases');
+  const statusEl=document.getElementById('rsvpStatus');
+  if(para){
+    document.querySelector('.r-msg').textContent=`¡Hola ${para}! Tu confirmación es muy importante para mí.`;
+  }
+  if(pases){
+    document.getElementById('rsvpPases').textContent=`Tienes ${pases} ${pases==='1'?'pase reservado':'pases reservados'}.`;
+  }
+  document.getElementById('rsvpBtn').addEventListener('click',function(){
+    var btn=this;
+    btn.disabled=true;
+    btn.textContent='Enviando...';
+    statusEl.textContent='';
+    fetch('https://panel-invitados.vercel.app/api/confirmar',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({slug:'xv-sofia',nombre:para||'Invitado',pases:parseInt(pases)||1,confirmado:true})
+    }).then(function(r){return r.json();}).then(function(){
+      btn.textContent='¡Confirmado!';
+      btn.style.background='#b1dd8b';btn.style.color='#2d1a4e';
+      statusEl.textContent='Tu asistencia ha sido confirmada. ¡Te esperamos!';
+    }).catch(function(){
+      btn.disabled=false;
+      btn.innerHTML='<svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Confirmar Asistencia';
+      statusEl.textContent='Hubo un error, intenta de nuevo.';
+    });
+  });
+})();
+
+/* ── MÚSICA ── */
+(function(){
+  const fab=document.getElementById('musicFab'),audio=document.getElementById('bgAudio');
+  let playing=false;
+  fab.addEventListener('click',()=>{
+    playing=!playing;
+    if(playing){audio.play().catch(()=>{});fab.style.background='var(--dark)';}
+    else{audio.pause();fab.style.background='var(--accent)';}
+  });
+})();
+</script>
+</body>
+</html>
