@@ -20,13 +20,16 @@ html{scroll-behavior:smooth;}
 :root{
   --bg:#fdf8ff;
   --paper:#ffffff;
-  --accent:#8b6bb5;     /* purple */
-  --dark:#5a3d80;       /* dark purple */
+  --accent:#8b6bb5;
+  --dark:#5a3d80;
   --ink:#2d1a4e;
   --ink-soft:#6e5a90;
-  --light:#d9c9fe;      /* lavender */
+  --light:#d9c9fe;
   --surface:#f3edf9;
   --silver:#c9b8e0;
+  --rosa:#eec8cc;
+  --verde:#b1dd8b;
+  --amarillo:#fff994;
 }
 body{
   font-family:'Lato',sans-serif;font-weight:400;font-size:16px;
@@ -49,7 +52,7 @@ body::before{
 .sec-title{
   font-family:'Great Vibes',cursive;font-size:54px;
   text-align:center;line-height:1.05;margin-bottom:8px;padding-top:10px;
-  background:linear-gradient(90deg,var(--dark) 0%,var(--dark) 28%,var(--light) 50%,var(--dark) 72%,var(--dark) 100%);
+  background:linear-gradient(90deg,var(--dark) 0%,var(--rosa) 25%,var(--light) 50%,var(--verde) 75%,var(--dark) 100%);
   background-size:200% auto;
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
   animation:shimmer 7s ease-in-out infinite;
@@ -57,14 +60,14 @@ body::before{
 }
 /* divisor corazón estilo referencia */
 .heart-div{display:flex;align-items:center;justify-content:center;gap:14px;margin:6px auto 26px;}
-.heart-div .hd-bar{width:46px;height:1px;background:linear-gradient(90deg,transparent,var(--light));}
-.heart-div .hd-bar.r{background:linear-gradient(90deg,var(--light),transparent);}
+.heart-div .hd-bar{width:46px;height:1px;background:linear-gradient(90deg,transparent,var(--rosa));}
+.heart-div .hd-bar.r{background:linear-gradient(90deg,var(--rosa),transparent);}
 .heart-div svg{width:15px;height:15px;color:var(--accent);}
 
 @keyframes shimmer{0%,100%{background-position:200% center;}50%{background-position:-200% center;}}
 @keyframes floatGlow{
-  0%,100%{text-shadow:0 0 12px rgba(217,201,254,.3),0 0 28px rgba(139,107,181,.12);}
-  50%{text-shadow:0 0 20px rgba(217,201,254,.5),0 0 44px rgba(139,107,181,.2),0 0 60px rgba(217,201,254,.1);}
+  0%,100%{text-shadow:0 0 12px rgba(238,200,204,.35),0 0 28px rgba(217,201,254,.2);}
+  50%{text-shadow:0 0 20px rgba(255,249,148,.3),0 0 44px rgba(177,221,139,.18),0 0 60px rgba(217,201,254,.12);}
 }
 @keyframes sparkle{0%,100%{opacity:.3;transform:scale(.8);}50%{opacity:1;transform:scale(1.2);}}
 
@@ -97,7 +100,7 @@ section{padding:62px 26px;position:relative;}
 .hero-name{
   font-family:'Great Vibes',cursive;font-size:92px;line-height:.95;margin-bottom:6px;padding-top:18px;
   transform:translateY(30px);opacity:0;
-  background:linear-gradient(180deg,#f3edf9 0%,var(--light) 28%,var(--accent) 62%,var(--dark) 100%);
+  background:linear-gradient(180deg,var(--amarillo) 0%,var(--rosa) 22%,var(--light) 45%,var(--accent) 68%,var(--dark) 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
   filter:drop-shadow(0 2px 18px rgba(90,61,128,.3)) drop-shadow(0 0 26px rgba(217,201,254,.35));
   animation:floatGlow 4s ease-in-out infinite;
@@ -105,7 +108,7 @@ section{padding:62px 26px;position:relative;}
 .hero-sub{display:flex;flex-direction:column;align-items:center;gap:2px;transform:translateY(16px);opacity:0;}
 .xv-num{
   font-family:'Cinzel',serif;font-weight:600;font-size:46px;letter-spacing:10px;line-height:1;padding-left:10px;
-  background:linear-gradient(180deg,#f3edf9 0%,#d9c9fe 28%,#8b6bb5 62%,#5a3d80 100%);
+  background:linear-gradient(180deg,var(--amarillo) 0%,var(--rosa) 28%,var(--accent) 62%,var(--dark) 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
   filter:drop-shadow(0 0 12px rgba(217,201,254,.4));position:relative;display:inline-block;
 }
@@ -121,15 +124,15 @@ section{padding:62px 26px;position:relative;}
 /* ── FECHA ── */
 .fecha-sec{padding:30px 26px 6px;text-align:center;}
 .fecha-line{display:flex;align-items:center;justify-content:center;gap:18px;}
-.fecha-line .fl-bar{flex:1;max-width:58px;height:1px;background:linear-gradient(to right,transparent,var(--accent));opacity:.5;}
-.fecha-line .fl-bar.right{background:linear-gradient(to left,transparent,var(--accent));}
+.fecha-line .fl-bar{flex:1;max-width:58px;height:1px;background:linear-gradient(to right,transparent,var(--verde));opacity:.6;}
+.fecha-line .fl-bar.right{background:linear-gradient(to left,transparent,var(--verde));}
 .fecha-txt{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:16px;letter-spacing:7px;text-transform:uppercase;color:var(--dark);}
 
 /* ── FRASE INICIAL (tarjeta con tiara + flores) ── */
 .intro-card{
   position:relative;background:var(--paper);border-radius:8px;
   margin:8px auto 0;max-width:392px;padding:78px 30px 64px;overflow:hidden;
-  box-shadow:0 14px 50px rgba(45,26,78,.10);border:1px solid rgba(217,201,254,.4);
+  box-shadow:0 14px 50px rgba(45,26,78,.10);border:1px solid rgba(238,200,204,.45);
 }
 .intro-card .fl{width:46%;max-width:175px;}
 .intro-tiara{position:relative;z-index:2;display:flex;justify-content:center;margin-bottom:18px;}
@@ -153,7 +156,7 @@ section{padding:62px 26px;position:relative;}
 .cd-row{display:flex;justify-content:center;gap:10px;}
 .cd-box{
   min-width:70px;padding:16px 8px;text-align:center;border-radius:50%/42%;
-  border:1px solid rgba(255,255,255,.7);background:rgba(45,26,78,.28);backdrop-filter:blur(2px);
+  border:1px solid rgba(255,249,148,.55);background:rgba(45,26,78,.28);backdrop-filter:blur(2px);
 }
 .cd-num{font-family:'Cormorant Garamond',serif;font-size:34px;color:#fff;line-height:1;font-weight:600;font-variant-numeric:tabular-nums;}
 .cd-lbl{font-family:'Lato',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.85);margin-top:6px;}
@@ -163,7 +166,7 @@ section{padding:62px 26px;position:relative;}
 .loc-intro{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--dark);margin-bottom:8px;}
 .loc-pin{display:flex;justify-content:center;margin:10px 0 26px;}
 .loc-pin img{width:30px;height:30px;opacity:.8;}
-.loc-card{background:var(--paper);border-radius:16px;padding:30px 24px;box-shadow:0 8px 40px rgba(45,26,78,.09);text-align:center;border:1px solid rgba(217,201,254,.35);}
+.loc-card{background:var(--paper);border-radius:16px;padding:30px 24px;box-shadow:0 8px 40px rgba(45,26,78,.09);text-align:center;border:1px solid rgba(177,221,139,.35);}
 .loc-card .lt{font-family:'Great Vibes',cursive;font-size:40px;color:var(--dark);margin-bottom:2px;padding-top:8px;}
 .loc-card .ls{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
 .loc-card p{font-size:15.5px;margin:3px 0;line-height:1.6;font-weight:400;color:var(--ink);}
@@ -178,11 +181,11 @@ section{padding:62px 26px;position:relative;}
 /* ── ITINERARIO (formato Regina) ── */
 .timeline{position:relative;max-width:360px;margin:0 auto;padding:6px 0;}
 .timeline::before{content:'';position:absolute;top:34px;bottom:34px;left:50%;transform:translateX(-50%);width:2px;
-  background:linear-gradient(to bottom,var(--dark),var(--accent) 45%,var(--light));border-radius:2px;}
+  background:linear-gradient(to bottom,var(--rosa),var(--light) 30%,var(--verde) 60%,var(--amarillo));border-radius:2px;}
 .tl-item{display:grid;grid-template-columns:1fr 30px 1fr;align-items:center;column-gap:8px;margin:6px 0;}
 .tl-icon{display:flex;justify-content:flex-end;}
 .tl-icon img{width:54px;height:54px;object-fit:contain;}
-.tl-dot{justify-self:center;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2.5px solid var(--accent);z-index:2;box-shadow:0 0 0 4px rgba(217,201,254,.25);}
+.tl-dot{justify-self:center;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2.5px solid var(--rosa);z-index:2;box-shadow:0 0 0 4px rgba(238,200,204,.25);}
 .tl-text{text-align:left;}
 .tl-time{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--accent);line-height:1.05;}
 .tl-ev{font-family:'Lato',sans-serif;font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);margin-top:2px;line-height:1.35;}
@@ -193,7 +196,7 @@ section{padding:62px 26px;position:relative;}
 .dc-note{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;letter-spacing:2px;text-transform:uppercase;color:var(--dark);margin-bottom:30px;font-weight:500;}
 .dc-circles{display:flex;justify-content:center;gap:34px;margin-bottom:26px;}
 .dc-c{text-align:center;}
-.dc-c .ring{width:118px;height:118px;border-radius:50%;background:var(--paper);box-shadow:0 8px 28px rgba(45,26,78,.1);border:1px solid rgba(217,201,254,.5);display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.dc-c .ring{width:118px;height:118px;border-radius:50%;background:var(--paper);box-shadow:0 8px 28px rgba(45,26,78,.1);border:1px solid rgba(238,200,204,.5);display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
 .dc-c .ring img{width:58px;height:58px;}
 .dc-c .dc-lbl{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);}
 .dc-reserve{text-align:center;font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:1px;color:var(--ink-soft);text-transform:uppercase;}
@@ -222,8 +225,7 @@ section{padding:62px 26px;position:relative;}
 .cf-label{position:absolute;top:42px;left:0;right:0;z-index:3;text-align:center;}
 .cf-label .sec-title{margin-bottom:0;}
 
-/* foto del caballo: recorte vertical (cabeza del caballo + quinceañera), llena el marco como las demás */
-#cfImg2{object-position:center;}
+#cfImg2{object-position:center 20%;}
 
 /* ── ÁLBUM / COMPARTE TUS FOTOS ── */
 .album{position:relative;overflow:hidden;padding:0;}
@@ -248,7 +250,7 @@ section{padding:62px 26px;position:relative;}
 /* ── RSVP ── */
 .rsvp-card{
   position:relative;overflow:hidden;border-radius:22px;padding:46px 28px;text-align:center;
-  background:linear-gradient(160deg,var(--dark),var(--accent));box-shadow:0 14px 44px rgba(45,26,78,.28);
+  background:linear-gradient(160deg,var(--dark),#8b6b90,var(--accent));box-shadow:0 14px 44px rgba(45,26,78,.28);
 }
 .rsvp-card .sec-title{background:linear-gradient(90deg,#f3edf9,#fff 50%,#e0d4f8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:none;margin-bottom:4px;}
 .rsvp-card .r-date{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;letter-spacing:1px;color:#e0d4f8;margin-bottom:8px;text-transform:uppercase;}
@@ -267,7 +269,7 @@ section{padding:62px 26px;position:relative;}
 .closing-sign{font-family:'Great Vibes',cursive;font-size:64px;color:#fff;text-shadow:0 3px 20px rgba(0,0,0,.45);line-height:1;}
 footer{padding:46px 20px 56px;text-align:center;background:var(--bg);}
 footer .fn{font-family:'Great Vibes',cursive;font-size:46px;padding-top:10px;
-  background:linear-gradient(90deg,var(--dark),var(--light) 50%,var(--dark));background-size:200% auto;
+  background:linear-gradient(90deg,var(--dark),var(--rosa) 30%,var(--light) 50%,var(--verde) 70%,var(--dark));background-size:200% auto;
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 7s ease-in-out infinite;}
 footer .fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-top:6px;}
 .credit{margin-top:24px;font-family:'Lato',sans-serif;font-size:11px;letter-spacing:1px;color:var(--ink-soft);opacity:.65;}
@@ -502,9 +504,9 @@ footer .fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14
   <section id="sgal">
     <div class="cf-frame">
       <div class="cf-label"><h2 class="sec-title">Momentos</h2></div>
-      <img class="cf-img" id="cfImg1" src="./foto-banca.jpg" alt="Sofía">
-      <img class="cf-img" id="cfImg2" src="./foto-caballo.jpg" alt="Sofía de niña">
-      <img class="cf-img" id="cfImg3" src="./foto-escaleras.jpg" alt="Sofía">
+      <img class="cf-img" id="cfImg1" src="./foto-banca.jpg" alt="Sofía en atletismo">
+      <img class="cf-img" id="cfImg2" src="./foto-caballo.jpg" alt="Sofía y su hermano">
+      <img class="cf-img" id="cfImg3" src="./foto-escaleras.jpg" alt="Sofía con su mamá">
       <div class="cf-fade-top"></div>
       <div class="cf-fade-bot"></div>
     </div>
