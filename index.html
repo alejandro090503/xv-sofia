@@ -274,6 +274,16 @@ section{padding:62px 26px;position:relative;}
 .rsvp-pases-display{max-width:360px;margin:0 auto 24px;padding:18px 28px;background:rgba(217,201,254,.15);border:1px solid rgba(139,107,181,.28);border-radius:14px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
 .rsvp-pases-label{font-family:'Lato',sans-serif;font-size:11px;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:var(--ink-soft);}
 .rsvp-pases-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(36px,5vw,52px);color:var(--dark);line-height:1;}
+.rsvp-choice{display:flex;gap:14px;max-width:360px;margin:0 auto 24px;justify-content:center;}
+.rsvp-choice-btn{flex:1;padding:16px 10px;border-radius:14px;border:1.5px solid rgba(139,107,181,.35);background:rgba(255,255,255,.6);font-family:'Cinzel',serif;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);cursor:pointer;transition:all .3s;min-height:52px;}
+.rsvp-choice-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(139,107,181,.2);}
+.rsvp-choice-btn.active-yes{background:var(--verde);border-color:var(--verde);color:var(--ink);}
+.rsvp-choice-btn.active-no{background:var(--rosa);border-color:var(--rosa);color:var(--ink);}
+.rsvp-names{max-width:360px;margin:0 auto 24px;display:none;}
+.rsvp-names.show{display:block;}
+.rsvp-names label{display:block;font-family:'Lato',sans-serif;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px;margin-top:14px;}
+.rsvp-names input{width:100%;padding:14px 16px;border:1.5px solid rgba(139,107,181,.3);border-radius:12px;background:rgba(255,255,255,.7);font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--ink);outline:none;transition:border-color .3s;}
+.rsvp-names input:focus{border-color:var(--accent);}
 .rsvp-btn{
   display:flex;align-items:center;justify-content:center;gap:12px;
   width:100%;max-width:360px;margin:0 auto;
@@ -606,7 +616,12 @@ footer .fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14
           <div class="rsvp-pases-label">Pases</div>
           <div class="rsvp-pases-num" id="rsvpPasesNum">1</div>
         </div>
-        <button class="rsvp-btn" id="rsvpBtn" type="button">
+        <div class="rsvp-choice">
+          <button class="rsvp-choice-btn" id="rsvpYes" type="button">Sí asistiré</button>
+          <button class="rsvp-choice-btn" id="rsvpNo" type="button">No asistiré</button>
+        </div>
+        <div class="rsvp-names" id="rsvpNames"></div>
+        <button class="rsvp-btn" id="rsvpBtn" type="button" style="display:none;">
           <span id="rsvpBtnText">Confirmar Asistencia</span>
         </button>
         <p class="r-status" id="rsvpStatus"></p>
@@ -781,38 +796,80 @@ function initCrossfade(){
     `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${t}&dates=20260809T220000Z/20260810T050000Z&details=${d}&location=${l}`;
 })();
 
-/* ── RSVP (panel-invitados) ── */
+/* ── RSVP (WhatsApp) ── */
 (function(){
   const params=new URLSearchParams(location.search);
   const para=params.get('para');
-  const pases=params.get('pases');
-  const statusEl=document.getElementById('rsvpStatus');
+  const pases=parseInt(params.get('pases'))||1;
+  const btnYes=document.getElementById('rsvpYes');
+  const btnNo=document.getElementById('rsvpNo');
+  const namesDiv=document.getElementById('rsvpNames');
+  const confirmBtn=document.getElementById('rsvpBtn');
   const btnText=document.getElementById('rsvpBtnText');
+  let asistira=null;
+
   if(para){
-    document.querySelector('.r-msg').textContent=`¡Hola ${para}! Tu confirmación es muy importante para mí.`;
+    document.querySelector('.r-msg').textContent='¡Hola '+para+'! Tu confirmación es muy importante para mí.';
   }
-  if(pases){
+  if(pases>1){
     document.getElementById('rsvpPasesDisplay').style.display='flex';
     document.getElementById('rsvpPasesNum').textContent=pases;
   }
-  document.getElementById('rsvpBtn').addEventListener('click',function(){
-    var btn=this;
-    btn.disabled=true;
-    btnText.textContent='Enviando...';
-    statusEl.textContent='';
-    fetch('https://panel-invitados.vercel.app/api/confirmar',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({slug:'xv-sofia',nombre:para||'Invitado',pases:parseInt(pases)||1,confirmado:true})
-    }).then(function(r){return r.json();}).then(function(){
-      btnText.textContent='¡Confirmado!';
-      btn.style.background='var(--verde)';btn.style.borderColor='var(--verde)';btn.style.color='var(--ink)';
-      statusEl.textContent='Tu asistencia ha sido confirmada. ¡Te esperamos!';
-    }).catch(function(){
-      btn.disabled=false;
-      btnText.textContent='Confirmar Asistencia';
-      statusEl.textContent='Hubo un error, intenta de nuevo.';
-    });
+
+  function buildNameFields(){
+    namesDiv.innerHTML='';
+    for(var i=1;i<=pases;i++){
+      var lbl=document.createElement('label');
+      lbl.setAttribute('for','rsvpName'+i);
+      lbl.textContent=pases===1?'Tu nombre':'Acompañante '+i;
+      var inp=document.createElement('input');
+      inp.type='text';inp.id='rsvpName'+i;
+      inp.placeholder=pases===1?'Escribe tu nombre':'Nombre del acompañante '+i;
+      inp.autocomplete='name';
+      namesDiv.appendChild(lbl);
+      namesDiv.appendChild(inp);
+    }
+  }
+
+  btnYes.addEventListener('click',function(){
+    asistira=true;
+    btnYes.classList.add('active-yes');
+    btnNo.classList.remove('active-no');
+    buildNameFields();
+    namesDiv.classList.add('show');
+    confirmBtn.style.display='flex';
+    btnText.textContent='Confirmar Asistencia';
+  });
+
+  btnNo.addEventListener('click',function(){
+    asistira=false;
+    btnNo.classList.add('active-no');
+    btnYes.classList.remove('active-yes');
+    namesDiv.classList.remove('show');
+    namesDiv.innerHTML='';
+    confirmBtn.style.display='flex';
+    btnText.textContent='Confirmar Inasistencia';
+  });
+
+  confirmBtn.addEventListener('click',function(){
+    var phone='5218138818805';
+    var nombre=para||'Invitado';
+    var msg='';
+    if(asistira){
+      var nombres=[];
+      for(var i=1;i<=pases;i++){
+        var v=document.getElementById('rsvpName'+i);
+        if(v&&v.value.trim())nombres.push(v.value.trim());
+      }
+      msg='¡Hola! Soy *'+nombre+'* y confirmo mi asistencia a los XV Años de Sofía.';
+      msg+='\nPases: '+pases;
+      if(nombres.length>0)msg+='\nAcompañantes:\n'+nombres.map(function(n,i){return(i+1)+'. '+n;}).join('\n');
+      msg+='\n\n¡Ahí estaremos! 🎉';
+    }else{
+      msg='Hola, soy *'+nombre+'* y lamentablemente no podré asistir a los XV Años de Sofía. Les envío mis mejores deseos. 💜';
+    }
+    var url='https://wa.me/'+phone+'?text='+encodeURIComponent(msg);
+    window.open(url,'_blank');
   });
 })();
 
