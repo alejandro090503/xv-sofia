@@ -861,12 +861,12 @@ function initCrossfade(){
         var v=document.getElementById('rsvpName'+i);
         if(v&&v.value.trim())nombres.push(v.value.trim());
       }
-      msg='¡Hola! Soy *'+nombre+'* y confirmo mi asistencia a los XV Años de Sofía.';
+      msg='¡Hola! Confirmo mi asistencia a los XV Años de Sofía.';
       msg+='\nPases: '+pases;
       if(nombres.length>0)msg+='\nAcompañantes:\n'+nombres.map(function(n,i){return(i+1)+'. '+n;}).join('\n');
       msg+='\n\n¡Ahí estaremos! 🎉';
     }else{
-      msg='Hola, soy *'+nombre+'* y lamentablemente no podré asistir a los XV Años de Sofía. Les envío mis mejores deseos. 💜';
+      msg='Hola, lamentablemente no podré asistir a los XV Años de Sofía. Les envío mis mejores deseos. 💜';
     }
     var url='https://wa.me/'+phone+'?text='+encodeURIComponent(msg);
     window.open(url,'_blank');
