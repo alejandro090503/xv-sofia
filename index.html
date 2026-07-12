@@ -565,6 +565,7 @@ footer .fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14
       <img class="cf-img" id="cfImg2" src="./foto-caballo.jpg" alt="Sofía y su hermano">
       <img class="cf-img" id="cfImg3" src="./foto-escaleras.jpg" alt="Sofía con su mamá">
       <img class="cf-img" id="cfImg4" src="./foto-album-bg.jpg" alt="Sofía">
+      <img class="cf-img" id="cfImg5" src="./foto-momento5.jpg" alt="Sofía">
       <div class="cf-fade-top"></div>
       <div class="cf-fade-bot"></div>
     </div>
@@ -757,19 +758,21 @@ function initTimeline(){
 
 /* ── CROSSFADE GALERÍA ── */
 function initCrossfade(){
-  gsap.set('#cfImg2,#cfImg3,#cfImg4',{opacity:0});
+  gsap.set('#cfImg2,#cfImg3,#cfImg4,#cfImg5',{opacity:0});
   ScrollTrigger.create({
     trigger:'#sgal',start:'top top',end:'bottom bottom',scrub:1,
     onUpdate(self){
       const p=self.progress;
-      const i1=1-gsap.utils.clamp(0,1,(p-0.15)/0.18);
-      const i2=Math.min(gsap.utils.clamp(0,1,(p-0.15)/0.18),1-gsap.utils.clamp(0,1,(p-0.4)/0.18));
-      const i3=Math.min(gsap.utils.clamp(0,1,(p-0.4)/0.18),1-gsap.utils.clamp(0,1,(p-0.65)/0.18));
-      const i4=gsap.utils.clamp(0,1,(p-0.65)/0.18);
+      const i1=1-gsap.utils.clamp(0,1,(p-0.1)/0.15);
+      const i2=Math.min(gsap.utils.clamp(0,1,(p-0.1)/0.15),1-gsap.utils.clamp(0,1,(p-0.3)/0.15));
+      const i3=Math.min(gsap.utils.clamp(0,1,(p-0.3)/0.15),1-gsap.utils.clamp(0,1,(p-0.5)/0.15));
+      const i4=Math.min(gsap.utils.clamp(0,1,(p-0.5)/0.15),1-gsap.utils.clamp(0,1,(p-0.7)/0.15));
+      const i5=gsap.utils.clamp(0,1,(p-0.7)/0.15);
       gsap.set('#cfImg1',{opacity:i1});
       gsap.set('#cfImg2',{opacity:i2});
       gsap.set('#cfImg3',{opacity:i3});
       gsap.set('#cfImg4',{opacity:i4});
+      gsap.set('#cfImg5',{opacity:i5});
     }
   });
 }
